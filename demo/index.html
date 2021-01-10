@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+  <head>
+    <title>animation-fireworks demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script type="module" src="../animation-fireworks.js"></script>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <header>
+        <h1>Basic animation-fireworks Demo</h1>
+        <nav>
+          <a href="https://github.com/manufosela/animation-fireworks" title="github public repository">
+            <img src="https://img.shields.io/badge/github-repository-green" alt="github" />
+          </a>
+          <a href="https://www.npmjs.com/package/animation-fireworks" title="npm package animation-fireworks">
+            <img src="https://img.shields.io/badge/npmjs-package-red" alt="npm-package" />
+          </a>
+        </nav>
+      </header>
+      <aside class="blocks">
+        <pre class="block code">
+          <h3>Example</h3>
+          <code>
+            &lt;animation-fireworks&gt;&lt;/animation-fireworks&gt;
+          </code>
+        </pre>
+        <pre class="block attributes">
+          <h3>Attributes</h3>
+          <ul>
+            <li>property1 (String [default Value])</li>
+            <li>property2 (Number) [default Value]</li>
+          </ul>
+          <h3>Events</h3>
+          <ul>
+            <li>web-component_event-name-1</li>
+            <li>web-component_event-name-2</li>
+          </ul>
+          <p class="note">
+            NOTE: Events must send its node id into 
+            detail CustomEvent
+          </p>
+        </pre>
+      </aside>
+
+      <main>
+        <div id="example1" class="block">
+          <fieldset>
+            <div>
+              <h3>Example 1</h3>
+              <p>Click buttons to dispatch events to init/stop fireworks</p>
+            </div>
+            <button id="initFireworksBtn1">Init Fireworks</button> 
+            <button id="stopFireworksBtn1">Stop Fireworks</button>
+          </fieldset>
+          <animation-fireworks id="animation-fireworks-1"></animation-fireworks>
+        </div>
+        <div id="example2" class="block">
+          <fieldset>
+            <div>
+              <h3>Example 2</h3>
+              <p>Click buttons to dispatch events to init/stop fireworks</p>
+              <p>Intensity 50, duration infinite, colours list #FF0,#0FF,#F0F</p>
+            </div>
+            <button id="initFireworksBtn2">Init Fireworks</button> 
+            <button id="stopFireworksBtn2">Stop Fireworks</button>
+          </fieldset>
+          <animation-fireworks id="animation-fireworks-2" fireworks-duration="0" fireworks-intensity="50" colours="#FF0,#0FF,#F0F"></animation-fireworks>
+        </div>
+      </main>
+      
+      <footer>developed by <b>manufosela</b></footer>
+    </div>
+
+    <script>
+      function init() {
+        document.getElementById('initFireworksBtn1').addEventListener('click', () => {
+          const detail = {detail:{id:'animation-fireworks-1'}};
+          const animationFireworksInitFireworksEvent = new CustomEvent('animation-fireworks-init-fireworks', detail);
+          document.dispatchEvent(animationFireworksInitFireworksEvent);
+        });
+        document.getElementById('stopFireworksBtn1').addEventListener('click', () => {
+          const detail = {detail:{id:'animation-fireworks-1'}};
+          const animationFireworksStopFireworksEvent = new CustomEvent('animation-fireworks-stop-fireworks', detail);
+          document.dispatchEvent(animationFireworksStopFireworksEvent);
+        });
+        document.getElementById('initFireworksBtn2').addEventListener('click', () => {
+          const detail = {detail:{id:'animation-fireworks-2'}};
+          const animationFireworksInitFireworksEvent = new CustomEvent('animation-fireworks-init-fireworks', detail);
+          document.dispatchEvent(animationFireworksInitFireworksEvent);
+        });
+        document.getElementById('stopFireworksBtn2').addEventListener('click', () => {
+          const detail = {detail:{id:'animation-fireworks-2'}};
+          const animationFireworksStopFireworksEvent = new CustomEvent('animation-fireworks-stop-fireworks', detail);
+          document.dispatchEvent(animationFireworksStopFireworksEvent);
+        });
+      }
+      window.onload = init();
+    </script>
+  </body>
+</html>

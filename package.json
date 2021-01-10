@@ -1,0 +1,94 @@
+{
+  "name": "animation-fireworks",
+  "version": "1.0.0",
+  "description": "Webcomponent animation-fireworks following open-wc recommendations",
+  "author": "manufosela",
+  "license": "MIT",
+  "main": "index.js",
+  "module": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/manufosela/animation-fireworks"
+  },
+  "keywords": [
+    "webcomponent",
+    "lit-element"
+  ],
+  "bugs": {
+    "url": "https://github.com/manufosela/animation-fireworks/issues"
+  },
+  "homepage": "https://github.com/manufosela/animation-fireworks",
+  "scripts": {
+    "start": "web-dev-server --app-index demo/index.html --node-resolve --open --watch",
+    "start:dist": "web-dev-server --app-index dist/index.html --open --watch",
+    "build": "rm -rf dist && mkdir dist && rollup -c && postcss demo/css/styles.css > dist/css/styles.css",
+    "start:es-dev": "es-dev-server --app-index /demo/index.html --node-resolve --watch --open",
+    "start:es-dev:dist": "es-dev-server --app-index /dist/index.html --watch --open",
+    "lint:eslint": "eslint --ext .js,.html . --ignore-path .gitignore",
+    "format:eslint": "eslint --ext .js,.html . --fix --ignore-path .gitignore",
+    "lint:prettier": "prettier \"**/*.js\" --check --ignore-path .gitignore",
+    "format:prettier": "prettier \"**/*.js\" --write --ignore-path .gitignore",
+    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "format": "npm run format:eslint && npm run format:prettier",
+    "test": "web-test-runner --coverage",
+    "test:watch": "web-test-runner --watch",
+    "storybook": "start-storybook",
+    "storybook:build": "build-storybook",
+    "doc:json": "wca analyze . --format json --outFile custom-elements.json",
+    "doc:md": "wca analyze . --format markdown --outFile component.md"
+  },
+  "dependencies": {
+    "lit-html": "^1.1.2",
+    "lit-element": "^2.2.1"
+  },
+  "devDependencies": {
+    "@open-wc/demoing-storybook": "^2.0.0",
+    "@open-wc/eslint-config": "^4.0.0",
+    "@open-wc/testing": "^2.0.0",
+    "@web/dev-server": "^0.0.12",
+    "@web/test-runner": "^0.7.41",
+    "api-viewer-element": "^0.4.4",
+    "eslint": "^6.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "husky": "^1.0.0",
+    "lint-staged": "^10.0.0",
+    "prettier": "^2.0.4",
+    "web-component-analyzer": "^1.1.6",
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-proposal-decorators": "^7.12.12",
+    "@webcomponents/webcomponentsjs": "^2.5.0",
+    "cssnano": "^4.1.10",
+    "es-dev-server": "^2.0.2",
+    "postcss": "^8.2.3",
+    "postcss-cli": "^8.3.1",
+    "rollup": "^2.36.1",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-copy": "^3.3.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-replace-html-vars": "^1.0.3",
+    "rollup-plugin-terser": "^7.0.2"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@open-wc/eslint-config",
+      "eslint-config-prettier"
+    ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "arrowParens": "avoid"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
